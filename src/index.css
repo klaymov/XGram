@@ -1,0 +1,126 @@
+@import "tailwindcss";
+
+/* ─── Design Tokens ─── */
+@theme {
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+
+  /* Brand palette */
+  --color-brand-50: oklch(0.97 0.01 250);
+  --color-brand-100: oklch(0.93 0.03 250);
+  --color-brand-200: oklch(0.86 0.06 250);
+  --color-brand-300: oklch(0.76 0.10 250);
+  --color-brand-400: oklch(0.65 0.15 250);
+  --color-brand-500: oklch(0.55 0.20 250);
+  --color-brand-600: oklch(0.48 0.22 250);
+  --color-brand-700: oklch(0.40 0.18 250);
+  --color-brand-800: oklch(0.33 0.14 250);
+  --color-brand-900: oklch(0.25 0.10 250);
+
+  /* Dark surface palette */
+  --color-surface-50: #f8fafc;
+  --color-surface-100: #f1f5f9;
+  --color-surface-200: #e2e8f0;
+  --color-surface-300: #cbd5e1;
+  --color-surface-400: #94a3b8;
+  --color-surface-500: #64748b;
+  --color-surface-600: #475569;
+  --color-surface-700: #334155;
+  --color-surface-800: #1e293b;
+  --color-surface-900: #0f172a;
+  --color-surface-950: #020617;
+}
+
+/* ─── Base Styles ─── */
+@layer base {
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-surface-600) transparent;
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background-color: var(--color-surface-950);
+    color: var(--color-surface-100);
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  .light body {
+    background-color: var(--color-surface-50);
+    color: var(--color-surface-900);
+  }
+}
+
+/* ─── Utility Animations ─── */
+@layer utilities {
+  .animate-skeleton {
+    animation: skeleton-pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  .animate-fade-in {
+    animation: fade-in 0.3s ease-out;
+  }
+
+  .animate-slide-up {
+    animation: slide-up 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .animate-scale-in {
+    animation: scale-in 0.2s ease-out;
+  }
+}
+
+@keyframes skeleton-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scale-in {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* ─── Glassmorphism components ─── */
+.glass {
+  background: rgba(15, 23, 42, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(148, 163, 184, 0.1);
+}
+
+.light .glass {
+  background: rgba(248, 250, 252, 0.8);
+  border: 1px solid rgba(203, 213, 225, 0.5);
+}
+
+/* ─── Custom scrollbar for webkit ─── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--color-surface-600);
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--color-surface-500);
+}
